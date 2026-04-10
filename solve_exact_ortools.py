@@ -486,8 +486,7 @@ def solve_model(
         routing_enums_pb2.LocalSearchMetaheuristic.GUIDED_LOCAL_SEARCH
     )
 
-    # Time budget: 600 seconds for the local-search phase
-    # (line 332 in the original solve_exact_ortools.py context)
+    # Time budget (controlled by SOLVER_TIME_LIMIT_SECONDS constant at module level)
     params.time_limit.FromSeconds(SOLVER_TIME_LIMIT_SECONDS)
 
     # Enable logging so we can observe convergence during solving
@@ -516,7 +515,7 @@ def solve_model(
     )
     solution = routing.SolveWithParameters(params)
 
-    # Check solver status (line 334 in the original context)
+    # Check solver status after the search completes.
     # Status codes: ROUTING_NOT_SOLVED=0, ROUTING_SUCCESS=1,
     #               ROUTING_PARTIAL_SUCCESS_LOCAL_OPTIMUM_NOT_REACHED=2,
     #               ROUTING_FAIL=3, ROUTING_FAIL_TIMEOUT=4, ROUTING_INVALID=5
@@ -1016,9 +1015,11 @@ def write_report_docx(
     )
     doc.add_paragraph(
         "Step 4 — Lower bound.  "
-        "After solving, routing.objective_lower_bound() returns the tightest "
-        "lower bound the solver has proved on the global optimum.  Comparing "
-        "this with the incumbent yields the optimality gap reported below."
+        "Before solving, routing.CloseModel() finalises the model, after which "
+        "routing.ComputeLowerBound() solves the LP relaxation of the assignment "
+        "subproblem to produce a provably valid lower bound on the optimal integer "
+        "solution.  Comparing this pre-solve bound with the local-search incumbent "
+        "yields the optimality gap reported below."
     )
 
     # ------------------------------------------------------------------ #
