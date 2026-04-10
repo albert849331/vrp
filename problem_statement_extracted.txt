@@ -1,0 +1,20 @@
+﻿Problem Statement 
+The problem is to set up a connection between a mother and a daughter center. The mother and daughter are locations whose geo codes (latitudes & longitudes) are provided in the excel file (refer attached file â€œdata_1â€). Each mother center has a set of vehicles which connects to the daughter centers (You can assume this set). The connection should be such that a vehicle cannot leave the mother center before 6 am and must reach the daughter center before 10 am. A vehicle can leave from 1 mother center and connect to multiple daughter center, however the last daughter center that it connects should reach before10 am. After connecting the last daughter center, the vehicle should come back to the same mother center (which of course can be after 10 am). 
+Each vehicle has a fixed cost and additional cost based on time and distance travelled. The commercials of the vehicle are given below:
+Â Vehicle Type
+Tata Ace
+Fixed Cost
+1000
+Rate per kmÂ 
+10
+Rate per hour 
+50
+
+You need to assign a daughter center to mother center by assuming that a vehicle to a daughter center will be connected by 1 mother center only. 
+You are free to make your assumptions, but you need to state them clearly. 
+The purpose is to understand your thought process in building a solution. 
+Submissions: Your submissions would include  
+i) A doc (max 2 page) explaining the methodology, solution, tools and language used. You can include the result summary and your code in the appendix (that can go beyond the 2 page)
+ii) An Excel file with the name of mother center corresponding to each daughter center and routes if any.
+
+ 
